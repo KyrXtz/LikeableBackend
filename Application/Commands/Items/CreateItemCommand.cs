@@ -18,9 +18,9 @@
     #region Validation
     public class CreateItemCommandValidator : AbstractValidator<CreateItemCommand>
     {
-        public CreateItemCommandValidator()
+        public CreateItemCommandValidator(IOptions<ValidationSettings> options)
         {
-            RuleFor(x => x.Description.Length).LessThanOrEqualTo(2000);
+            RuleFor(x => x.Description.Length).LessThanOrEqualTo(Convert.ToInt32(options.Value.MaxDescriptionLength));
         }
     }
     #endregion

@@ -12,3 +12,5 @@ global using Common.Models.Request.Profiles;
 global using FluentValidation;
 global using Common.Settings;
 global using Microsoft.Extensions.Options;
+global using Application.Validation;
+global using Application.Commands;
