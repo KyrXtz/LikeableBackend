@@ -7,8 +7,8 @@
 *.rsuser
 *.suo
 _ReSharper.*
-Api/bin
-Api/obj
+bin
+obj
 packages
 *.user
 *.userosscache
