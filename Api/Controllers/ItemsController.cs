@@ -4,57 +4,29 @@
     public class ItemsController : BaseController
     {
         private readonly IMediator _mediator;
-
-        //private readonly IItemsService _itemsService;
-
-        //private readonly ICurrentUserService _currentUser;
-
-        public ItemsController(
-            //IItemsService itemsService, ICurrentUserService currentUser,
-            IMediator mediator)
+        public ItemsController(IMediator mediator)
         {
-            //_itemsService = itemsService;
-            //_currentUser = currentUser;
             _mediator = mediator;
         }
 
         [HttpGet]
-        public async Task<ActionResult<ItemListingResponseModel>> Mine([FromQuery] ItemListingRequestModel model)
+        public async Task<ActionResult<ItemListingResponseModel>> LikedItems([FromQuery] ItemListingRequestModel model)
         {
-            //var userId = _currentUser.GetId();
+            var res = await _mediator.Send(new ItemListingQuery());
 
-            //var items = await _itemsService.ByUser(userId);
-
-            //var res = new ItemListingResponseModel
-            //{
-            //    Items = items.Data.Select(x => new ItemListingResponseModel.Item
-            //    {
-            //        Id = Guid.Parse(GetValue(x, nameof(ItemListingResponseModel.Item.Id))),
-            //        ImageUrl = GetValue(x, nameof(ItemListingResponseModel.Item.ImageUrl))
-            //    })
-            //};
-
-            //if (res.Items.Any(i => i.Id == Guid.Empty || i.ImageUrl == String.Empty)) return BadRequest("There are items in the database with guid = 0 or no image.");
-            //return Ok(res);
-            return null;
-
+            if (res.Succeeded) return Ok(res.Data);
+            else return BadRequest(res.Error);
         }
 
         [HttpGet]
-        [Route("Get")]
-        public async Task<ActionResult<ItemDetailsResponseModel>> Details([FromQuery] ItemDetailsRequestModel model)
+        [Route(Constants.WebConstants.Id)]
+        public async Task<ActionResult<ItemDetailsResponseModel>> ItemDetails([FromRoute] Guid id,
+            [FromQuery] ItemDetailsRequestModel model)
         {
-            //var item = await _itemsService.Details(model.Id);
+            var res = await _mediator.Send(new ItemDetailsQuery(id));
 
-            //var res = new ItemDetailsResponseModel
-            //{
-            //    Id = Guid.Parse(GetValue(item.Data, nameof(ItemDetailsResponseModel.Id))),
-            //    ImageUrl = GetValue(item.Data, nameof(ItemDetailsResponseModel.ImageUrl)),
-            //    Description = GetValue(item.Data, nameof(ItemDetailsResponseModel.Description))
-            //};
-            //if (res.Id == Guid.Empty || res.ImageUrl == String.Empty) return BadRequest("There is an item in the database with guid = 0 or no image.");
-            //return Ok(res);
-            return null;
+            if (res.Succeeded) return Ok(res.Data);
+            else return BadRequest(res.Error);
         }
 
         [HttpPost]
@@ -68,30 +40,24 @@
 
         [HttpPut]
         [Route(Constants.WebConstants.Id)]
-        public async Task<ActionResult<UpdateItemResponseModel>> Update(UpdateItemRequestModel model)
+        public async Task<ActionResult<UpdateItemResponseModel>> Update([FromRoute] Guid id, 
+            UpdateItemRequestModel model)
         {
-            //var userId = _currentUser.GetId();
-            //var res = await _itemsService.Update(
-            //    model.Id,
-            //    model.Description,
-            //    userId
-            //    );
+            var res = await _mediator.Send(new UpdateItemCommand(id, model.Description));
 
-            //if (!res.Succeeded) return BadRequest();
-            //return Ok();
-            return null;
+            if (res.Succeeded) return Ok(res.Data);
+            else return BadRequest(res.Error);
         }
 
         [HttpDelete]
         [Route(Constants.WebConstants.Id)]
-        public async Task<ActionResult<DeleteItemResponseModel>> Delete(DeleteItemRequestModel model)
+        public async Task<ActionResult<DeleteItemResponseModel>> Delete([FromRoute] Guid id, 
+            DeleteItemRequestModel model)
         {
-            //var userId = _currentUser.GetId();
-            //var res = await _itemsService.Delete(model.Id, userId);
+            var res = await _mediator.Send(new DeleteItemCommand(id));
 
-            //if (!res.Succeeded) return BadRequest();
-            //return Ok();
-            return null;
+            if (res.Succeeded) return Ok(res.Data);
+            else return BadRequest(res.Error);
         }
     }
 }

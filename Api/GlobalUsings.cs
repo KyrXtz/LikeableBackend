@@ -26,3 +26,4 @@ global using Infrastructure.Ef;
 global using Infrastructure.Extensions;
 global using SharedKernel.Settings;
 global using Service;
+global using Application.Queries.Items;

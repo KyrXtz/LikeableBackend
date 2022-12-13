@@ -2,6 +2,5 @@
 {
     public class DeleteItemRequestModel
     {
-        public Guid Id { get; set; }
     }
 }

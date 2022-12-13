@@ -4,7 +4,6 @@ global using Microsoft.Extensions.DependencyInjection;
 global using FluentValidation;
 global using Microsoft.Extensions.Options;
 global using Application.Validation;
-global using Application.Commands;
 global using SharedKernel;
 global using SharedKernel.Interfaces;
 global using SharedKernel.Models.Response.Items;

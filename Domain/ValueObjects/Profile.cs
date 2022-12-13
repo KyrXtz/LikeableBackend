@@ -1,6 +1,6 @@
 ﻿namespace Domain.ValueObjects
 {
-    public class Profile
+    public class Profile : ValueObject
     {
         public string? Name { get; private set; }
         public string? MainPhotoUrl { get; private set; }

@@ -22,7 +22,7 @@
             };
         }
 
-        public async Task<Result<ItemListingResponseModel>> ByUser(string userId)
+        public async Task<Result<ItemListingResponseModel>> LikedItems(string userId) //TODO
         {
             var items = await _itemsDbContext.EntitySet
                  //.Where(x => x.UserId == userId)
@@ -38,7 +38,7 @@
             };
         }
 
-        public async Task<Result<ItemDetailsResponseModel>> Details(Guid id)
+        public async Task<Result<ItemDetailsResponseModel>> ItemDetails(Guid id)
         {
             var item = await _itemsDbContext.EntitySet
                 .Where(x => x.Id == id)
@@ -49,6 +49,9 @@
                     Description = x.Description.Value 
                  })
                 .FirstOrDefaultAsync();
+
+            if (item.Id == Guid.Empty || item.ImageUrl == string.Empty) return "There is an item in the database with guid = 0 or no image.";
+
             return item;
         }
 

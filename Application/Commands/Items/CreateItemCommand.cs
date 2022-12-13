@@ -20,6 +20,7 @@
     {
         public CreateItemCommandValidator(IOptions<ValidationSettings> options)
         {
+            RuleFor(x => x.Description).NotNull();
             RuleFor(x => x.Description.Length).LessThanOrEqualTo(Convert.ToInt32(options.Value.MaxDescriptionLength));
         }
     }
@@ -29,21 +30,17 @@
     {
         private readonly IItemsService _itemsService;
 
-        private readonly ICurrentUserService _currentUser;
-        public CreateItemCommandHandler(IItemsService itemsService, ICurrentUserService currentUser)
+        public CreateItemCommandHandler(IItemsService itemsService)
         {
             _itemsService = itemsService;
-            _currentUser = currentUser;
         }
 
         public async Task<Result<CreateItemResponseModel>> Handle(CreateItemCommand request, CancellationToken cancellationToken)
         {
-            var userId = _currentUser.GetId();
-            var itemId = await _itemsService.Create(request.Title, request.ImageUrl, request.Description);
+            var res = await _itemsService.Create(request.Title, request.ImageUrl, request.Description);
+            if (!res.Succeeded) return res.Error;
 
-            if (itemId.Data.Id == Guid.Empty) return "Insert failed. Check logs.";
-
-            return itemId.Data;
+            return res;
         }
     }
     #endregion

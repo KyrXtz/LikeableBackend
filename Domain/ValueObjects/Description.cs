@@ -1,6 +1,6 @@
 ﻿namespace Domain.ValueObjects
 {
-    public class Description
+    public class Description : ValueObject
     {
         public string Value { get; private set; }
 

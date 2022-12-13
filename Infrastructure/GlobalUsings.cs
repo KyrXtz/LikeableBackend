@@ -25,3 +25,4 @@ global using Domain.Base.Interfaces;
 global using SharedKernel.Interfaces;
 global using SharedKernel.Settings;
 global using SharedKernel;
+global using Domain.Base;
