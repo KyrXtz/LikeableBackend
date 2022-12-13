@@ -7,11 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Domain\Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Models\Request\Search\" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.11" />
   </ItemGroup>
 
 </Project>

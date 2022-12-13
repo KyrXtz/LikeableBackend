@@ -1,4 +1,4 @@
-﻿namespace Common
+﻿namespace SharedKernel
 {
     public class Constants
     {

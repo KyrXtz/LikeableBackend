@@ -1,4 +1,4 @@
-﻿namespace Common.Models.Request.Identity
+﻿namespace SharedKernel.Models.Request.Identity
 {
     public class LoginRequestModel
     {

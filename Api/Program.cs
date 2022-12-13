@@ -55,12 +55,11 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
 });
-
-builder.Services.AddFluentValidations();
-builder.Services.AddApiControllers(); //TODO check this method, copy filter from opta
-builder.Services.AddApplicationServices();//TODO split the methods in this file to respective modules
+//builder.Services
+//    .LoadInfrastructureConfigurations();
 
 builder.Services
+    .LoadServiceServices()
     .LoadApplicationServices()
     .LoadInfrastructureServices()
     .LoadApiServices();

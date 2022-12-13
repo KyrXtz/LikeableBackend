@@ -1,4 +1,10 @@
-﻿global using Common.Settings;
-global using Ardalis.GuardClauses;
-global using Microsoft.Extensions.Options;
-global using Domain.Base.Enums;
+﻿global using System.Security.Claims;
+global using SharedKernel.Enums;
+global using SharedKernel.Models.Response.Profiles;
+global using SharedKernel.Models.Response.Search;
+global using Microsoft.EntityFrameworkCore;
+global using SharedKernel.Interfaces;
+global using SharedKernel.Models.Response.Items;
+global using SharedKernel.Models.Request.Items;
+global using SharedKernel.Models.Request.Profiles;
+global using SharedKernel.Models.Request.Search;

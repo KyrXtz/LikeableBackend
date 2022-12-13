@@ -1,4 +1,7 @@
-﻿namespace Api.Controllers
+﻿using Domain.Aggregates;
+using SharedKernel.Interfaces;
+
+namespace Api.Controllers
 {
     [Authorize(Roles = "Admin, User")]
     public class IdentityController : BaseController

@@ -1,4 +1,4 @@
-﻿namespace Common.Models.Response.Items
+﻿namespace SharedKernel.Models.Response.Items
 {
     public class ItemDetailsResponseModel
     {    

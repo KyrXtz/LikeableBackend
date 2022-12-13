@@ -1,4 +1,4 @@
-﻿namespace Common.Settings
+﻿namespace SharedKernel.Settings
 {
     public class ApplicationSettings
     {

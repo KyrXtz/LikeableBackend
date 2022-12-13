@@ -1,4 +1,4 @@
-﻿namespace Application.Infrastructure.Services
+﻿namespace SharedKernel.Interfaces
 {
     public interface ICurrentUserService
     {

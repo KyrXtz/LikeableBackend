@@ -1,4 +1,4 @@
-﻿namespace Common.Models.Response.Identity
+﻿namespace SharedKernel.Models.Response.Identity
 {
     public class LoginResponseModel
     {

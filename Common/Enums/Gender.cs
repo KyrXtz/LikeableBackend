@@ -1,4 +1,4 @@
-﻿namespace Domain.Base.Enums
+﻿namespace SharedKernel.Enums
 {
     public enum Gender
     {

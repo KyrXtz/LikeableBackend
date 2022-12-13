@@ -3,20 +3,22 @@
     [Authorize(Roles = "Admin, User")]
     public class SearchController : BaseController
     {
-        private readonly ISearchService _searchService;
 
-        public SearchController(ISearchService searchService)
+        public SearchController(
+            //ISearchService searchService
+            )
         {
-            _searchService = searchService;
+           // _searchService = searchService;
         }
 
         [HttpGet]
         [AllowAnonymous]
         [Route(nameof(Constants.WebConstants.Search))]
-        public async Task<IEnumerable<SearchProfileResponseModel>> Items(string query)
+        public async Task<IEnumerable<SearchItemResponseModel>> Items(string query)
         {
-            var items = await _searchService.Items(query);
-            return items;
+            //var items = await _searchService.Items(query);
+            //return items;
+            return null;
         }
     }
 }

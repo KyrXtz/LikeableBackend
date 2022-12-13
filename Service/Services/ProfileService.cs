@@ -1,20 +1,20 @@
-﻿namespace Infrastructure.Services
+﻿namespace Service.Services
 {
     public class ProfileService : IProfileService
     {
-        private readonly AppDbContext _appDbContext;
+        private readonly IAppDbContext<User> _userDbContext;
 
-        public ProfileService(AppDbContext appDbContext)
+        public ProfileService(IAppDbContext<User> userDbContext)
         {
-            _appDbContext = appDbContext;
+            _userDbContext = userDbContext;
         }
 
-        public Task<UpdateProfileResponseModel> ByUser(string userId)
+        public async Task<Result<GetProfileResponseModel>> ByUser(string userId)
         {
-            var profile = _appDbContext
-                .Users
+            var profile = await _userDbContext
+                .EntitySet
                 .Where(u => u.Id == userId)
-                .Select(u => new UpdateProfileResponseModel
+                .Select(u => new GetProfileResponseModel
                 {
                     Name = u.Profile.Name,
                     MainPhotoUrl = u.Profile.MainPhotoUrl,
@@ -24,19 +24,15 @@
             return profile;
         }
 
-        public async Task<Result<bool>> Update( //TODO change response to Dictionary<string,string>
+        public async Task<Result<UpdateProfileResponseModel>> Update(
             string userId,
             string email,
             string userName,
             string name,
-            string mainPhotoUrl,
-            string website,
-            string biography,
-            Gender gender,
-            bool isPrivate)
+            string mainPhotoUrl)
         {
-            var user = await _appDbContext
-                .Users
+            var user = await _userDbContext
+                .EntitySet
                 .Where(u => u.Id == userId)
                 .Include(u => u.Profile)
                 .FirstOrDefaultAsync();
@@ -44,24 +40,27 @@
             if(user == null) return "User does not exist.";
 
             var res = await ChangeEmail(user, userId, email);
-            if (!res.Succeeded) return res;
+            if (!res.Succeeded) return res.Error;
 
             res = await ChangeUserName(user, userId, userName);
-            if (!res.Succeeded) return res;
+            if (!res.Succeeded) return res.Error;
 
             ChangeProfile(user,name,mainPhotoUrl);
 
-            await _appDbContext.SaveChangesAsync();
+            await _userDbContext.SaveChangesAsync();
 
-            return true;
+            return new UpdateProfileResponseModel
+            {
+                Updated = true
+            };
         }
 
         private async Task<Result<bool>> ChangeEmail(User user,string userId, string email) //TODO check if result is correct
         {
             if (!string.IsNullOrWhiteSpace(email) && user.Email != email)
             {
-                var emailExists = await _appDbContext
-                    .Users
+                var emailExists = await _userDbContext
+                    .EntitySet
                     .AnyAsync(u => u.Id != userId && u.Email == email);
 
                 if (emailExists) return "The provided e-mail is already taken.";
@@ -74,8 +73,8 @@
         {
             if (!string.IsNullOrWhiteSpace(userName) && user.UserName != userName)
             {
-                var userNameExists = await _appDbContext
-                    .Users
+                var userNameExists = await _userDbContext
+                    .EntitySet
                     .AnyAsync(u => u.Id != userId && u.UserName == userName);
 
                 if (userNameExists) return "The provided username is already taken.";

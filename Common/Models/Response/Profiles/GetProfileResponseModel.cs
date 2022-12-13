@@ -1,6 +1,6 @@
-﻿namespace SharedKernel.Models.Request.Profiles
+﻿namespace SharedKernel.Models.Response.Profiles
 {
-    public class UpdateProfileRequestModel
+    public class GetProfileResponseModel
     {
         //[MaxLength(MaxNameLength)]
         public string? Name { get; set; }

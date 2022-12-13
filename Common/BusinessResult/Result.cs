@@ -1,4 +1,4 @@
-﻿namespace Application.Infrastructure
+﻿namespace SharedKernel
 {
     public class Result<T>
     {
@@ -10,9 +10,11 @@
             => new Result<T> { Succeeded = false, Error = error };
 
         public static implicit operator Result<T>(T data)
-            => new Result<T> { Succeeded = true, Data = data };      
+            => new Result<T> { Succeeded = true, Data = data };
         public static Result<T> Success(T data)
             => new Result<T> { Succeeded = true, Data = data };
-        
+        public static Result<T> Fail(string error)
+            => new Result<T> { Succeeded = false, Error = error };
+
     }
 }

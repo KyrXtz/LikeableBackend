@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Services
+﻿namespace Service.Services
 {
     public class IdentityService : IIdentityService
     {

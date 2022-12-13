@@ -1,8 +1,7 @@
-﻿namespace Common.Models.Response.Profiles
+﻿namespace SharedKernel.Models.Response.Profiles
 {
     public class UpdateProfileResponseModel
     {
-        public string Name { get; set; }
-        public string MainPhotoUrl { get; set; }
+        public bool Updated { get; set; }
     }
 }

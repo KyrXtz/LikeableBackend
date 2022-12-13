@@ -4,11 +4,8 @@
     public class AdminController : BaseController
     {
         [HttpGet]
-        public async Task<IEnumerable<ItemListingResponseModel>> Mine()
-        {
-            
-
-            return null;
+        public async Task Mine()
+        {           
 
         }
     }

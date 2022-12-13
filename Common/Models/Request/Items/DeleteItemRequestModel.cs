@@ -1,4 +1,4 @@
-﻿namespace Common.Models.Request.Items
+﻿namespace SharedKernel.Models.Request.Items
 {
     public class DeleteItemRequestModel
     {

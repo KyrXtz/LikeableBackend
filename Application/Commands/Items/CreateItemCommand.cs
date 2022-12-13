@@ -41,12 +41,9 @@
             var userId = _currentUser.GetId();
             var itemId = await _itemsService.Create(request.Title, request.ImageUrl, request.Description);
 
-            if (itemId.Data == Guid.Empty) return "Insert failed. Check logs.";
+            if (itemId.Data.Id == Guid.Empty) return "Insert failed. Check logs.";
 
-            return new CreateItemResponseModel
-            {
-                Id = itemId.Data
-            };
+            return itemId.Data;
         }
     }
     #endregion

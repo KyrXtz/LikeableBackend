@@ -51,17 +51,7 @@
             return services;
         }
 
-        public static IServiceCollection AddApplicationServices(this IServiceCollection services)
-        {
-            services
-                .AddTransient<IIdentityService, IdentityService>()
-                .AddTransient<IProfileService, ProfileService>()
-                .AddTransient<ISearchService, SearchService>()
-                .AddTransient<IItemsService, ItemsService>()
-                .AddScoped<ICurrentUserService, CurrentUserService>();
-
-            return services;
-        }
+        
 
         public static IServiceCollection AddApiControllers(this IServiceCollection services)
         {
