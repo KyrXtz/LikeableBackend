@@ -4,21 +4,18 @@
     public class SearchController : BaseController
     {
 
-        public SearchController(
-            //ISearchService searchService
-            )
+        public SearchController(IMediator mediator) : base(mediator)
         {
-           // _searchService = searchService;
         }
 
-        [HttpGet]
+        [HttpPost]
         [AllowAnonymous]
-        [Route(nameof(Constants.WebConstants.Search))]
-        public async Task<IEnumerable<SearchItemResponseModel>> Items(string query)
+        public async Task<ActionResult<SearchItemsResponseModel>> Items(SearchItemRequestModel model)
         {
-            //var items = await _searchService.Items(query);
-            //return items;
-            return null;
+            var res = await _mediator.Send(new SearchItemsQuery(model.Query));
+
+            if (res.Succeeded) return Ok(res.Data);
+            else return BadRequest(res.Error);
         }
     }
 }

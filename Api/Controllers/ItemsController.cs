@@ -3,10 +3,8 @@
     [Authorize(Roles = "Admin, User")]
     public class ItemsController : BaseController
     {
-        private readonly IMediator _mediator;
-        public ItemsController(IMediator mediator)
+        public ItemsController(IMediator mediator) : base(mediator)
         {
-            _mediator = mediator;
         }
 
         [HttpGet]

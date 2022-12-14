@@ -3,47 +3,30 @@
     [Authorize(Roles = "Admin, User")]
     public class ProfilesController : BaseController
     {
-        //private readonly IProfileService _profiles;
-        //private readonly ICurrentUserService _currentUser;
-
-        public ProfilesController(
-            //IProfileService profiles,
-            //ICurrentUserService currentUser
-            )
+        public ProfilesController(IMediator mediator) :base(mediator)
         {
-            //_profiles = profiles;
-            //_currentUser = currentUser;
         }
 
         [HttpGet]
-        public async Task<ActionResult<UpdateProfileResponseModel>> Mine() // TODO change the response model to GetProfileResponseModel
+        [Route(Constants.WebConstants.UserId)]
+        public async Task<ActionResult<GetProfileResponseModel>> Mine([FromRoute] string userId,
+            [FromQuery] GetProfileRequestModel model) 
         {
-            //var profile = await _profiles.ByUser(_currentUser.GetId());
+            var res = await _mediator.Send(new GetProfileQuery(userId));
 
-            //return profile;
-            return null;
+            if (res.Succeeded) return Ok(res.Data);
+            else return BadRequest(res.Error);
         }
 
         [HttpPut]
-        public async Task<ActionResult<UpdateProfileResponseModel>> Update(UpdateProfileRequestModel model)
+        [Route(Constants.WebConstants.UserId)]
+        public async Task<ActionResult<UpdateProfileResponseModel>> Update([FromRoute] string userId, 
+            [FromBody] UpdateProfileRequestModel model)
         {
-            //var userId = _currentUser.GetId();
+            var res = await _mediator.Send(new UpdateProfileCommand(userId, model.UserName, model.Name, model.MainPhotoUrl));
 
-            //var res = await _profiles.Update(
-            //    userId,
-            //    model.Email,
-            //    model.UserName,
-            //    model.Name,
-            //    model.MainPhotoUrl,
-            //    model.Website,
-            //    model.Biography,
-            //    model.Gender,
-            //    model.IsPrivate
-            //    );
-
-            //if (!res.Succeeded) return BadRequest(res.Error);
-            //return Ok();
-            return null;
+            if (res.Succeeded) return Ok(res.Data);
+            else return BadRequest(res.Error);
         }
     }
 }

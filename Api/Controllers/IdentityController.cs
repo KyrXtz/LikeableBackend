@@ -12,7 +12,7 @@ namespace Api.Controllers
 
         public IdentityController(UserManager<User> userManager,
             IOptions<ApplicationSettings> appSettings,
-            IIdentityService identityService)
+            IIdentityService identityService, IMediator mediator) : base(mediator)
         {
             _userManager = userManager;
             _appSettings = appSettings.Value;

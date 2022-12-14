@@ -2,6 +2,6 @@
 {
     public interface ISearchService
     {
-        Task<Result<SearchItemResponseModel>> Items(string query);
+        Task<Result<SearchItemsResponseModel>> Items(string query);
     }
 }

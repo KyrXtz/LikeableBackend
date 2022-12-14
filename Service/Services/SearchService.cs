@@ -9,20 +9,22 @@
             _itemDbContext = itemDbContext;
         }
 
-        public async Task<Result<SearchItemResponseModel>> Items(string query)
+        public async Task<Result<SearchItemsResponseModel>> Items(string query)
         {
             var items = await _itemDbContext
                 .EntitySet
-                .Where(i => i.Description.Value.ToLower().Contains(query.ToLower())) //TODO change desc to name
-                .Select(i => new SearchItemResponseModel.SearchItem
+                .Where(i => i.Title.ToLower().Contains(query.ToLower()) ||
+                    i.Description.Value.ToLower().Contains(query.ToLower())) //TODO change desc to name
+                .Select(i => new SearchItemsResponseModel.SearchItem
                 {
+                    Title = i.Title,
                     ImageUrl = i.ImageUrl,
                     Description = i.Description.Value,
                     ItemId = i.Id
                 })
                 .ToListAsync();
 
-            return new SearchItemResponseModel
+            return new SearchItemsResponseModel
             {
                 Items = items
             };

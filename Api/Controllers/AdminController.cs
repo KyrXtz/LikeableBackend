@@ -3,6 +3,10 @@
     [Authorize(Roles = "Admin")]
     public class AdminController : BaseController
     {
+        public AdminController(IMediator mediator) : base(mediator)
+        {
+
+        }
         [HttpGet]
         public async Task Mine()
         {           

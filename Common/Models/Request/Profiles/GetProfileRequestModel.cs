@@ -2,6 +2,5 @@
 {
     public class GetProfileRequestModel
     {
-        public Guid UserId { get; set; }
     }
 }

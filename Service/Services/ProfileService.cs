@@ -26,7 +26,6 @@
 
         public async Task<Result<UpdateProfileResponseModel>> Update(
             string userId,
-            string email,
             string userName,
             string name,
             string mainPhotoUrl)
@@ -39,10 +38,10 @@
 
             if(user == null) return "User does not exist.";
 
-            var res = await ChangeEmail(user, userId, email);
-            if (!res.Succeeded) return res.Error;
+            //var res = await ChangeEmail(user, userId, email);
+            //if (!res.Succeeded) return res.Error;
 
-            res = await ChangeUserName(user, userId, userName);
+            var res = await ChangeUserName(user, userId, userName);
             if (!res.Succeeded) return res.Error;
 
             ChangeProfile(user,name,mainPhotoUrl);

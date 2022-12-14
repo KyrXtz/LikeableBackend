@@ -8,3 +8,7 @@ global using SharedKernel;
 global using SharedKernel.Interfaces;
 global using SharedKernel.Models.Response.Items;
 global using SharedKernel.Settings;
+global using SharedKernel.Models.Request.Profiles;
+global using SharedKernel.Models.Response.Profiles;
+global using SharedKernel.Models.Response.Search;
+global using SharedKernel.Models.Request.Search;

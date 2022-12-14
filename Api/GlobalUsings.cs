@@ -27,3 +27,6 @@ global using Infrastructure.Extensions;
 global using SharedKernel.Settings;
 global using Service;
 global using Application.Queries.Items;
+global using Application.Commands.Profiles;
+global using SharedKernel.Models.Request.Search;
+global using Application.Queries.Search;

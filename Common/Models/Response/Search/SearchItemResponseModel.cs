@@ -1,6 +1,6 @@
 ﻿namespace SharedKernel.Models.Response.Search
 {
-    public class SearchItemResponseModel
+    public class SearchItemsResponseModel
     {
         public IEnumerable<SearchItem> Items { get; set; }
         public class SearchItem
