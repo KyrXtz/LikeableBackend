@@ -24,11 +24,9 @@
             return profile;
         }
 
-        public async Task<Result<UpdateProfileResponseModel>> Update(
+        public async Task<Result<UpdateProfileResponseModel>> UpdateUserName(
             string userId,
-            string userName,
-            string name,
-            string mainPhotoUrl)
+            string userName)
         {
             var user = await _userDbContext
                 .EntitySet
@@ -44,7 +42,27 @@
             var res = await ChangeUserName(user, userId, userName);
             if (!res.Succeeded) return res.Error;
 
-            ChangeProfile(user,name,mainPhotoUrl);
+            await _userDbContext.SaveChangesAsync();
+
+            return new UpdateProfileResponseModel
+            {
+                Updated = true
+            };
+        }
+        public async Task<Result<UpdateProfileResponseModel>> UpdateProfile(
+            string userId,
+            string name,
+            string mainPhotoUrl)
+        {
+            var user = await _userDbContext
+                .EntitySet
+                .Where(u => u.Id == userId)
+                .Include(u => u.Profile)
+                .FirstOrDefaultAsync();
+
+            if (user == null) return "User does not exist.";
+
+            ChangeProfile(user, name, mainPhotoUrl);
 
             await _userDbContext.SaveChangesAsync();
 

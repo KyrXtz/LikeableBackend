@@ -34,22 +34,26 @@
     public class UpdateProfileCommandHandler : IRequestHandler<UpdateProfileCommand, Result<UpdateProfileResponseModel>>
     {
         private readonly IProfileService _ProfilesService;
-        private readonly ICurrentUserService _currentUserService;
 
-        public UpdateProfileCommandHandler(IProfileService ProfilesService, ICurrentUserService currentUserService)
+        public UpdateProfileCommandHandler(IProfileService ProfilesService)
         {
             _ProfilesService = ProfilesService;
-            _currentUserService = currentUserService;
         }
 
         public async Task<Result<UpdateProfileResponseModel>> Handle(UpdateProfileCommand request, CancellationToken cancellationToken)
         {
-            var res = await _ProfilesService.Update(
+            if (string.IsNullOrEmpty(request.Name) && string.IsNullOrEmpty(request.MainPhotoUrl) && string.IsNullOrEmpty(request.UserName)) 
+                return "No data to be updated.";
+            
+            var res = await _ProfilesService.UpdateUserName(
                 request.UserId,
-                request.UserName,
+                request.UserName);
+            if (!res.Succeeded) return res.Error;
+
+            res = await _ProfilesService.UpdateProfile(
+                request.UserId,
                 request.Name,
-                request.MainPhotoUrl
-                );
+                request.MainPhotoUrl);
             if (!res.Succeeded) return res.Error;
 
             return res;
