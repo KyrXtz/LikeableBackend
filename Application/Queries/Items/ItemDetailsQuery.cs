@@ -1,6 +1,6 @@
 ﻿namespace Application.Queries.Items
 {
-    #region Command
+    #region Query
     public class ItemDetailsQuery : BaseQuery, IRequest<Result<ItemDetailsResponseModel>>
     {
         public Guid ItemId { get; set; }

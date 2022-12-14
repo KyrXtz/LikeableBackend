@@ -1,6 +1,6 @@
 ﻿namespace SharedKernel.Models.Request.Identity
 {
-    public class RegisterRequestModel
+    public class RegisterUserRequestModel
     {
         //[Required]
         public string UserName { get; set; }

@@ -29,7 +29,7 @@
                 }
             }
 
-            var user = Domain.Aggregates.User.Create(null, "admin", "admin@admin");
+            var user = Domain.Aggregates.User.Create("admin", "admin@admin");
             var userPWD = "agiosnikolaos";
             var _user = await UserManager.FindByEmailAsync("admin@admin");
 
@@ -40,7 +40,6 @@
                 {
                     //here we tie the new user to the role
                     await UserManager.AddToRoleAsync(user, Constants.Roles.Admin.ToString());
-
                 }
             }
         }

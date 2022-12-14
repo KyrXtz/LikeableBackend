@@ -30,3 +30,5 @@ global using Application.Queries.Items;
 global using Application.Commands.Profiles;
 global using SharedKernel.Models.Request.Search;
 global using Application.Queries.Search;
+global using Application.Commands.Identity;
+global using Application.Queries.Identity;

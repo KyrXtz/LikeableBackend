@@ -12,3 +12,4 @@ global using SharedKernel.Models.Request.Profiles;
 global using SharedKernel.Models.Response.Profiles;
 global using SharedKernel.Models.Response.Search;
 global using SharedKernel.Models.Request.Search;
+global using SharedKernel.Models.Response.Identity;

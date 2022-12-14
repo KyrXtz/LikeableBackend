@@ -14,9 +14,10 @@
             CreatedBy = username;
         }
 
-        public static User Create(Profile profile, string username, string email)
+        public static User Create(string username, string email)
         {
-            return new User(profile, username, email);
+            var emptyProfile = Profile.Create(null, null);
+            return new User(emptyProfile, username, email);
         }
     }
 }

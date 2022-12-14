@@ -15,4 +15,5 @@ global using System.IdentityModel.Tokens.Jwt;
 global using SharedKernel.Models.Response.Items;
 global using SharedKernel.Models.Response.Identity;
 global using SharedKernel.Models.Response.Profiles;
+global using Microsoft.AspNetCore.Identity;
 

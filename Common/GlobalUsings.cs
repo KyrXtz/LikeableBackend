@@ -8,3 +8,4 @@ global using SharedKernel.Models.Response.Items;
 global using SharedKernel.Models.Request.Items;
 global using SharedKernel.Models.Request.Profiles;
 global using SharedKernel.Models.Request.Search;
+global using SharedKernel.Models.Response.Identity;
