@@ -1,6 +1,6 @@
 ﻿namespace Api
 {
-    public static class ApiExtensions
+    public static class ApiLoader
     {
         public static IServiceCollection LoadApiServices(this IServiceCollection services)
         {      

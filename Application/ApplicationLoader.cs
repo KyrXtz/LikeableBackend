@@ -1,6 +1,6 @@
 ﻿namespace Application
 {
-    public static class ApplicationExtensions
+    public static class ApplicationLoader
     {
         public static IServiceCollection LoadApplicationServices(this IServiceCollection services)
         {

@@ -1,6 +1,6 @@
 ﻿namespace Service
 {
-    public static class ServiceExtensions
+    public static class ServiceLoader
     {
         public static IServiceCollection LoadServiceConfigurations(this IServiceCollection services)
         {
