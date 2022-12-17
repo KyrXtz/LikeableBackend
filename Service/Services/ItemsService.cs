@@ -22,7 +22,7 @@
             };
         }
 
-        public async Task<Result<ItemListingResponseModel>> LikedItems(string userId) //TODO
+        public async Task<Result<ItemListingResponseModel>> LikedItems(string userId)
         {
             var items = await _itemsDbContext.EntitySet
                  //.Where(x => x.UserId == userId)
@@ -61,7 +61,7 @@
 
             if (item == null) return "This user cannot edit this item.";
 
-            //item.Description = description; //TODO change to factory method
+            item.Update(description: description);
 
             await this._itemsDbContext.SaveChangesAsync();
 

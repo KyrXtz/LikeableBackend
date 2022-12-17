@@ -24,5 +24,11 @@
             var description = Description.Create(descriptionValue);
             return new Item(id, title, description, imageUrl);
         }
+
+        public void Update(string? title = null, string? description = null)
+        {
+            //if (title != null) Title = Title.Create(title);
+            if (description != null) Description = Description.Create(description);
+        }
     }
 }

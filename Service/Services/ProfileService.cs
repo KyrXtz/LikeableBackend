@@ -62,7 +62,7 @@
 
             if (user == null) return "User does not exist.";
 
-            ChangeProfile(user, name, mainPhotoUrl);
+            user.UpdateProfile(name, mainPhotoUrl);
 
             await _userDbContext.SaveChangesAsync();
 
@@ -72,7 +72,7 @@
             };
         }
 
-        private async Task<Result<bool>> ChangeEmail(User user,string userId, string email) //TODO check if result is correct
+        private async Task<Result<bool>> ChangeEmail(User user,string userId, string email) 
         {
             if (!string.IsNullOrWhiteSpace(email) && user.Email != email)
             {
@@ -86,7 +86,7 @@
             }
             return true;
         }
-        private async Task<Result<bool>> ChangeUserName(User user, string userId, string userName) //TODO check if result is correct
+        private async Task<Result<bool>> ChangeUserName(User user, string userId, string userName) 
         {
             if (!string.IsNullOrWhiteSpace(userName) && user.UserName != userName)
             {
@@ -100,20 +100,5 @@
             }
             return true;
         }
-        private void ChangeProfile(User user,
-            string name,
-            string mainPhotoUrl)
-        {
-            if (user.Profile.Name != name)
-            {
-                //user.Profile.Name = name; //TODO Update profile of user
-            }
-
-            if (user.Profile.MainPhotoUrl != mainPhotoUrl)
-            {
-               //user.Profile.MainPhotoUrl = mainPhotoUrl;
-            }
-        }
-
     }
 }
