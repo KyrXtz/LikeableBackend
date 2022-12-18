@@ -6,6 +6,9 @@
         {
             builder.ToTable("Items");
 
+            builder
+                .HasQueryFilter(c => !c.isDeleted);
+
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id)
                 .ValueGeneratedNever();
@@ -14,6 +17,11 @@
             {
                 p.Property(x => x.Value).HasColumnName("Description").HasMaxLength(3000);
             });
+
+            builder.HasMany<UserLikedItems>()
+                .WithOne()
+                .HasForeignKey(x => x.ItemId)
+                .OnDelete(DeleteBehavior.ClientNoAction);
         }
     }
 }

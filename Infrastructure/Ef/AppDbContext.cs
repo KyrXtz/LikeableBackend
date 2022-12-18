@@ -1,6 +1,7 @@
 ﻿namespace Infrastructure.Ef
 {
-    public class AppDbContext : IdentityDbContext<User>, IAppDbContext<User>, IAppDbContext<Item>
+    public class AppDbContext : IdentityDbContext<User>,
+        IAppDbContext<User>, IAppDbContext<Item>
     {
         private readonly ICurrentUserService _currentUser;
         public AppDbContext(DbContextOptions<AppDbContext> options, ICurrentUserService currentUser)
@@ -18,15 +19,6 @@
         }
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder
-                .Entity<Item>()               
-                .HasQueryFilter(c => !c.isDeleted);
-
-            builder
-                .Entity<User>()
-                .OwnsOne(c => c.Profile)
-                .WithOwner();
-
             base.OnModelCreating(builder);
             builder.ApplyAllConfigurationsFromCurrentAssembly();
         }
