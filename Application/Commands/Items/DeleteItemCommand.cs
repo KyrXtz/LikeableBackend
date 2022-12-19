@@ -23,9 +23,9 @@
     public class DeleteItemCommandHandler : IRequestHandler<DeleteItemCommand, Result<DeleteItemResponseModel>>
     {
         private readonly IItemsService _itemsService;
-        private readonly ICurrentUserService _currentUserService;
+        private readonly IUserService _currentUserService;
 
-        public DeleteItemCommandHandler(IItemsService itemsService, ICurrentUserService currentUserService)
+        public DeleteItemCommandHandler(IItemsService itemsService, IUserService currentUserService)
         {
             _itemsService = itemsService;
             _currentUserService = currentUserService;
@@ -33,10 +33,8 @@
 
         public async Task<Result<DeleteItemResponseModel>> Handle(DeleteItemCommand request, CancellationToken cancellationToken)
         {
-            var userId = _currentUserService.GetId();
             var res = await _itemsService.Delete(
-                request.ItemId,
-                userId
+                request.ItemId         
                 );
             if (!res.Succeeded) return res.Error;
 

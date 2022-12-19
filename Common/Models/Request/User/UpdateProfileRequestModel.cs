@@ -1,8 +1,9 @@
-﻿namespace SharedKernel.Models.Response.Profiles
+﻿namespace SharedKernel.Models.Request.User
 {
-    public class GetProfileResponseModel
+    public class UpdateProfileRequestModel
     {
         //[MaxLength(MaxNameLength)]
+        public string? UserName { get; set; }
         public string? Name { get; set; }
         public string? MainPhotoUrl { get; set; }
     }

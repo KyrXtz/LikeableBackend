@@ -1,4 +1,6 @@
-﻿namespace Application.Commands.Profiles
+﻿using SharedKernel.Models.Response.User;
+
+namespace Application.Commands.User
 {
     #region Command
     public class UpdateProfileCommand : BaseCommand, IRequest<Result<UpdateProfileResponseModel>>
@@ -10,7 +12,7 @@
 
 
         public UpdateProfileCommand(string userId, string username, string name, string mainPhotoUrl)
-        {         
+        {
             UserId = userId;
             UserName = username;
             Name = name;
@@ -33,24 +35,24 @@
     #region Handler
     public class UpdateProfileCommandHandler : IRequestHandler<UpdateProfileCommand, Result<UpdateProfileResponseModel>>
     {
-        private readonly IProfileService _ProfilesService;
+        private readonly IUserService _userService;
 
-        public UpdateProfileCommandHandler(IProfileService ProfilesService)
+        public UpdateProfileCommandHandler(IUserService userService)
         {
-            _ProfilesService = ProfilesService;
+            _userService = userService;
         }
 
         public async Task<Result<UpdateProfileResponseModel>> Handle(UpdateProfileCommand request, CancellationToken cancellationToken)
         {
-            if (string.IsNullOrEmpty(request.Name) && string.IsNullOrEmpty(request.MainPhotoUrl) && string.IsNullOrEmpty(request.UserName)) 
+            if (string.IsNullOrEmpty(request.Name) && string.IsNullOrEmpty(request.MainPhotoUrl) && string.IsNullOrEmpty(request.UserName))
                 return "No data to be updated.";
-            
-            var res = await _ProfilesService.UpdateUserName(
+
+            var res = await _userService.UpdateUserName(
                 request.UserId,
                 request.UserName);
             if (!res.Succeeded) return res.Error;
 
-            res = await _ProfilesService.UpdateProfile(
+            res = await _userService.UpdateProfile(
                 request.UserId,
                 request.Name,
                 request.MainPhotoUrl);

@@ -1,7 +1,4 @@
-﻿using Domain.Aggregates;
-using Microsoft.AspNetCore.Identity;
-
-namespace Application.Queries.Identity
+﻿namespace Application.Queries.Identity
 {
     #region Query
     public class LoginUserQuery : BaseQuery, IRequest<Result<LoginUserResponseModel>>
@@ -31,10 +28,10 @@ namespace Application.Queries.Identity
     public class LoginUserQueryHandler : IRequestHandler<LoginUserQuery, Result<LoginUserResponseModel>>
     {
         private readonly IIdentityService _identityService;
-        private readonly UserManager<User> _userManager;
+        private readonly UserManager<Domain.Aggregates.User> _userManager;
         private readonly ApplicationSettings _appSettings;
 
-        public LoginUserQueryHandler(IIdentityService identityService, UserManager<User> userManager, IOptions<ApplicationSettings> appSettings)
+        public LoginUserQueryHandler(IIdentityService identityService, UserManager<Domain.Aggregates.User> userManager, IOptions<ApplicationSettings> appSettings)
         {
             _identityService = identityService;
             _userManager = userManager;

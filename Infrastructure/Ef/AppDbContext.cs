@@ -3,11 +3,11 @@
     public class AppDbContext : IdentityDbContext<User>,
         IAppDbContext<User>, IAppDbContext<Item>
     {
-        private readonly ICurrentUserService _currentUser;
-        public AppDbContext(DbContextOptions<AppDbContext> options, ICurrentUserService currentUser)
+        //private readonly IUserService _currentUser;
+        public AppDbContext(DbContextOptions<AppDbContext> options)//, IUserService currentUser)
             : base(options)
         {
-            _currentUser = currentUser;
+            //_currentUser = currentUser;
         }
         DbSet<Item> IAppDbContext<Item>.EntitySet { get; set; }
         DbSet<User> IAppDbContext<User>.EntitySet { get; set; }
@@ -30,8 +30,9 @@
                 .ToList()
                 .ForEach(entry =>
                 {
-                    var username = _currentUser.GetUserName();
-
+                    //var userId = _currentUser.GetCurrentUserId().Result.Data.UserId; //TODO change to async ? 
+                    //var username = _currentUser.GetUserName(userId).Result.Data.UserName;
+                    var username = "empty";
                     if (entry.Entity is IDeletableEntity deletableEntity)
                     {
                         if (entry.State == EntityState.Deleted)

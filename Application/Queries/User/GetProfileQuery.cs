@@ -1,4 +1,6 @@
-﻿namespace Application.Queries.Items
+﻿using SharedKernel.Models.Response.User;
+
+namespace Application.Queries.User
 {
     #region Query
     public class GetProfileQuery : BaseQuery, IRequest<Result<GetProfileResponseModel>>
@@ -23,16 +25,16 @@
     #region Handler
     public class GetProfileQueryHandler : IRequestHandler<GetProfileQuery, Result<GetProfileResponseModel>>
     {
-        private readonly IProfileService _profileService;
+        private readonly IUserService _userService;
 
-        public GetProfileQueryHandler(IProfileService profileService)
+        public GetProfileQueryHandler(IUserService userService)
         {
-            _profileService = profileService;
+            _userService = userService;
         }
 
         public async Task<Result<GetProfileResponseModel>> Handle(GetProfileQuery request, CancellationToken cancellationToken)
         {
-            var res = await _profileService.ByUser(request.UserId);
+            var res = await _userService.GetProfile(request.UserId);
             if (!res.Succeeded) return res.Error;
 
             return res;

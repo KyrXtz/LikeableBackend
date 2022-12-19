@@ -22,22 +22,6 @@
             };
         }
 
-        public async Task<Result<ItemListingResponseModel>> LikedItems(string userId)
-        {
-            var items = await _itemsDbContext.EntitySet
-                 //.Where(x => x.UserId == userId)
-                 .OrderByDescending(x => x.CreatedOn)
-                 .Select(x => new ItemListingResponseModel.Item
-                 {
-                     Id = x.Id, 
-                     ImageUrl = x.ImageUrl 
-                 }).ToListAsync();
-            return new ItemListingResponseModel
-            {
-                Items = items
-            };
-        }
-
         public async Task<Result<ItemDetailsResponseModel>> ItemDetails(Guid id)
         {
             var item = await _itemsDbContext.EntitySet
@@ -55,9 +39,9 @@
             return item;
         }
 
-        public async Task<Result<UpdateItemResponseModel>> Update(Guid id, string description, string userId)
+        public async Task<Result<UpdateItemResponseModel>> Update(Guid id, string description)
         {
-            var item = await ByIdAndUserId(id, userId);
+            var item = await ByIdAndUserId(id);
 
             if (item == null) return "This user cannot edit this item.";
 
@@ -71,9 +55,9 @@
             };
         }
 
-        public async Task<Result<DeleteItemResponseModel>> Delete(Guid id, string userId)
+        public async Task<Result<DeleteItemResponseModel>> Delete(Guid id)
         {
-            var item = await ByIdAndUserId(id, userId);
+            var item = await ByIdAndUserId(id);
 
             if (item == null) return "This user cannot delete this item.";
 
@@ -87,9 +71,9 @@
             };
         }
 
-        private async Task<Item> ByIdAndUserId(Guid id, string userId)
+        private async Task<Item> ByIdAndUserId(Guid id)
             => await _itemsDbContext.EntitySet
-                .Where(c => c.Id == id )//&& c.UserId == userId)
+                .Where(c => c.Id == id )
                 .FirstOrDefaultAsync();
     }
 }

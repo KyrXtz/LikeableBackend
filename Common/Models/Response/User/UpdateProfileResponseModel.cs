@@ -1,4 +1,4 @@
-﻿namespace SharedKernel.Models.Response.Profiles
+﻿namespace SharedKernel.Models.Response.User
 {
     public class UpdateProfileResponseModel
     {

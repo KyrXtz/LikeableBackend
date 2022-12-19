@@ -10,7 +10,7 @@
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<ActionResult<SearchItemsResponseModel>> Items(SearchItemRequestModel model)
+        public async Task<ActionResult<SearchItemsResponseModel>> SearchItems(SearchItemRequestModel model)
         {
             var res = await _mediator.Send(new SearchItemsQuery(model.Query));
 

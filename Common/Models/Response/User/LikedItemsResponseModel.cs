@@ -1,9 +1,9 @@
-﻿namespace SharedKernel.Models.Response.Items
+﻿namespace SharedKernel.Models.Response.User
 {
-    public class ItemListingResponseModel
+    public class LikedItemsResponseModel
     {
         public IEnumerable<Item> Items { get; set; }
-       
+
         public class Item
         {
             public Guid Id { get; set; }

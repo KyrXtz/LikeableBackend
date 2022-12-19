@@ -1,30 +1,10 @@
 ﻿namespace Api.Controllers
 {
-    [Authorize(Roles = "Admin, User")]
+    [Authorize(Roles = "Admin")]
     public class ItemsController : BaseController
     {
         public ItemsController(IMediator mediator) : base(mediator)
         {
-        }
-
-        [HttpGet]
-        public async Task<ActionResult<ItemListingResponseModel>> LikedItems([FromQuery] ItemListingRequestModel model)
-        {
-            var res = await _mediator.Send(new ItemListingQuery());
-
-            if (res.Succeeded) return Ok(res.Data);
-            else return BadRequest(res.Error);
-        }
-
-        [HttpGet]
-        [Route(Constants.WebConstants.Id)]
-        public async Task<ActionResult<ItemDetailsResponseModel>> ItemDetails([FromRoute] Guid id,
-            [FromQuery] ItemDetailsRequestModel model)
-        {
-            var res = await _mediator.Send(new ItemDetailsQuery(id));
-
-            if (res.Succeeded) return Ok(res.Data);
-            else return BadRequest(res.Error);
         }
 
         [HttpPost]
@@ -53,6 +33,17 @@
             DeleteItemRequestModel model)
         {
             var res = await _mediator.Send(new DeleteItemCommand(id));
+
+            if (res.Succeeded) return Ok(res.Data);
+            else return BadRequest(res.Error);
+        }
+
+        [HttpGet]
+        [Route(Constants.WebConstants.Id)]
+        public async Task<ActionResult<ItemDetailsResponseModel>> ItemDetails([FromRoute] Guid id,
+            [FromQuery] ItemDetailsRequestModel model)
+        {
+            var res = await _mediator.Send(new ItemDetailsQuery(id));
 
             if (res.Succeeded) return Ok(res.Data);
             else return BadRequest(res.Error);

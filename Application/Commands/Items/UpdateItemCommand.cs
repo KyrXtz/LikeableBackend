@@ -27,21 +27,17 @@
     public class UpdateItemCommandHandler : IRequestHandler<UpdateItemCommand, Result<UpdateItemResponseModel>>
     {
         private readonly IItemsService _itemsService;
-        private readonly ICurrentUserService _currentUserService;
 
-        public UpdateItemCommandHandler(IItemsService itemsService, ICurrentUserService currentUserService)
+        public UpdateItemCommandHandler(IItemsService itemsService)
         {
             _itemsService = itemsService;
-            _currentUserService = currentUserService;
         }
 
         public async Task<Result<UpdateItemResponseModel>> Handle(UpdateItemCommand request, CancellationToken cancellationToken)
         {
-            var userId = _currentUserService.GetId();
             var res = await _itemsService.Update(
                 request.ItemId,
-                request.Description,
-                userId
+                request.Description
                 );
             if (!res.Succeeded) return res.Error;
 

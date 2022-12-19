@@ -19,10 +19,9 @@
         {
             services
                 .AddTransient<IIdentityService, IdentityService>()
-                .AddTransient<IProfileService, ProfileService>()
                 .AddTransient<ISearchService, SearchService>()
                 .AddTransient<IItemsService, ItemsService>()
-                .AddScoped<ICurrentUserService, CurrentUserService>();
+                .AddScoped<IUserService, UserService>();
 
             return services;
         }

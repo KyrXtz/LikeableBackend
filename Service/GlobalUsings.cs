@@ -9,11 +9,9 @@ global using SharedKernel;
 global using SharedKernel.Interfaces;
 global using SharedKernel.Models.Response.Search;
 global using SharedKernel.Enums;
-global using SharedKernel.Models.Response.Profiles;
 global using Microsoft.IdentityModel.Tokens;
 global using System.IdentityModel.Tokens.Jwt;
 global using SharedKernel.Models.Response.Items;
 global using SharedKernel.Models.Response.Identity;
-global using SharedKernel.Models.Response.Profiles;
 global using Microsoft.AspNetCore.Identity;
-
+global using SharedKernel.Models.Response.User;

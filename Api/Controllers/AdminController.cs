@@ -7,10 +7,5 @@
         {
 
         }
-        [HttpGet]
-        public async Task Mine()
-        {           
-
-        }
     }
 }

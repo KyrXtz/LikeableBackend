@@ -1,4 +1,4 @@
-﻿namespace SharedKernel.Models.Request.Profiles
+﻿namespace SharedKernel.Models.Request.User
 {
     public class GetProfileRequestModel
     {
