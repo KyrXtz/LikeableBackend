@@ -2,7 +2,6 @@
 {
     public interface IUserService
     {
-        Task<Result<GetCurrentUserIdResponseModel>> GetCurrentUserId();
         Task<Result<GetUserNameResponseModel>> GetUserName(string userId);
         Task<Result<LikedItemsResponseModel>> LikedItems(string userId);
         Task<Result<GetProfileResponseModel>> GetProfile(string userId);

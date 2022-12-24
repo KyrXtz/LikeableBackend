@@ -14,14 +14,15 @@
             return services;
         }
 
-        #region internal
+        #region privates
         private static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services
                 .AddTransient<IIdentityService, IdentityService>()
                 .AddTransient<ISearchService, SearchService>()
                 .AddTransient<IItemsService, ItemsService>()
-                .AddScoped<IUserService, UserService>();
+                .AddTransient<ICurrentUserService, CurrentUserService>()
+                .AddTransient<IUserService, UserService>();
 
             return services;
         }

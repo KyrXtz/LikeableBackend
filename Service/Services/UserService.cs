@@ -4,26 +4,13 @@
     {
         private readonly IAppDbContext<Item> _itemsDbContext;
         private readonly IAppDbContext<User> _usersDbContext;
-        private readonly IHttpContextAccessor _httpContextAccessor;
         public UserService(IAppDbContext<Item> itemsDbContext,
-            IAppDbContext<User> usersDbContext,
-            IHttpContextAccessor httpContextAccessor)
+            IAppDbContext<User> usersDbContext)
         {
             _itemsDbContext = itemsDbContext;
             _usersDbContext = usersDbContext;
-            _httpContextAccessor = httpContextAccessor;
         }
 
-        public async Task<Result<GetCurrentUserIdResponseModel>> GetCurrentUserId()
-        {
-            var userId = _httpContextAccessor.HttpContext?.User?.GetId();
-            if (userId == null) return "Current User not found ??";
-
-            return new GetCurrentUserIdResponseModel
-            {
-                UserId = userId
-            };
-        }
         public async Task<Result<GetUserNameResponseModel>> GetUserName(string userId)
         {
             var user = await _usersDbContext.EntitySet

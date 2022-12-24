@@ -22,16 +22,17 @@ namespace Application.Queries.User
     public class LikedItemsQueryHandler : IRequestHandler<LikedItemsQuery, Result<LikedItemsResponseModel>>
     {
         private readonly IUserService _userService;
+        private readonly ICurrentUserService _currentUserService;
 
-
-        public LikedItemsQueryHandler(IUserService userService)
+        public LikedItemsQueryHandler(IUserService userService, ICurrentUserService currentUserService)
         {
             _userService = userService;
+            _currentUserService = currentUserService;
         }
 
         public async Task<Result<LikedItemsResponseModel>> Handle(LikedItemsQuery request, CancellationToken cancellationToken)
         {
-            var userRes = await _userService.GetCurrentUserId();
+            var userRes = await _currentUserService.GetCurrentUserId();
             if (!userRes.Succeeded) return userRes.Error;
             var userId = userRes.Data.UserId;
 
