@@ -14,6 +14,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="NLog" Version="5.1.0" />
+    <PackageReference Include="NLog.Extensions.Logging" Version="5.2.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,5 +24,8 @@
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
     <ProjectReference Include="..\Service\Service.csproj" />
   </ItemGroup>
-
+	
+	<ItemGroup>
+		<None Update="nlog.config" CopyToOutputDirectory="Always" />
+	</ItemGroup>
 </Project>

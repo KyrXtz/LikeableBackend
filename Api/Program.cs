@@ -2,6 +2,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
     .AddConfiguration(builder.Configuration)
+    .AddLogging(loggingBuilder =>
+    {
+        // configure Logging with NLog
+        loggingBuilder.ClearProviders();
+        loggingBuilder.SetMinimumLevel(LogLevel.Trace);
+        loggingBuilder.AddNLog(builder.Configuration);
+    })
     .AddSwagger();
 
 builder.Services

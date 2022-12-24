@@ -31,3 +31,4 @@ global using Application.Queries.Search;
 global using Application.Commands.Identity;
 global using Application.Queries.Identity;
 global using Application.Queries.User;
+global using NLog.Extensions.Logging;

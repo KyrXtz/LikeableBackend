@@ -1,4 +1,6 @@
-﻿namespace Application.Queries.Identity
+﻿using Microsoft.Extensions.Logging;
+
+namespace Application.Queries.Identity
 {
     #region Query
     public class LoginUserQuery : BaseQuery, IRequest<Result<LoginUserResponseModel>>
@@ -30,16 +32,19 @@
         private readonly IIdentityService _identityService;
         private readonly UserManager<Domain.Aggregates.User> _userManager;
         private readonly ApplicationSettings _appSettings;
-
-        public LoginUserQueryHandler(IIdentityService identityService, UserManager<Domain.Aggregates.User> userManager, IOptions<ApplicationSettings> appSettings)
+        private readonly ILogger<LoginUserQueryHandler> _logger;
+        public LoginUserQueryHandler(IIdentityService identityService, UserManager<Domain.Aggregates.User> userManager, IOptions<ApplicationSettings> appSettings, ILogger<LoginUserQueryHandler> logger)
         {
             _identityService = identityService;
             _userManager = userManager;
             _appSettings = appSettings.Value;
+            _logger = logger;
         }
 
         public async Task<Result<LoginUserResponseModel>> Handle(LoginUserQuery request, CancellationToken cancellationToken)
         {
+            _logger.LogInformation("Running login user command");
+
             var user = await _userManager.FindByNameAsync(request.UserName);
             if (user == null) return "User not exists";
 
