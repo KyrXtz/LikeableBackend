@@ -18,7 +18,7 @@
                 p.Property(x => x.Value).HasColumnName("Description").HasMaxLength(3000);
             });
 
-            builder.HasMany<UserLikedItems>()
+            builder.HasMany<UserLikedItem>()
                 .WithOne()
                 .HasForeignKey(x => x.ItemId)
                 .OnDelete(DeleteBehavior.ClientNoAction);

@@ -3,9 +3,9 @@
     public class User : BaseUser, IAggregateRoot
     {
         public Profile Profile { get; private set; }
-        private List<UserLikedItems> likedItems;
-        public IReadOnlyCollection<UserLikedItems> LikedItems => likedItems.AsReadOnly();
-        private User() { likedItems = new List<UserLikedItems>(); }
+        private List<UserLikedItem> likedItems;
+        public IReadOnlyCollection<UserLikedItem> LikedItems => likedItems.AsReadOnly();
+        private User() { likedItems = new List<UserLikedItem>(); }
         internal User(Profile profile, string username, string email)
         {
             base.Email = email;
@@ -13,7 +13,7 @@
             Profile = profile;
             CreatedOn = DateTime.UtcNow;
             CreatedBy = username;
-            likedItems = new List<UserLikedItems>();
+            likedItems = new List<UserLikedItem>();
         }
 
         public static User Create(string username, string email)

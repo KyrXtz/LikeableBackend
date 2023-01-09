@@ -1,8 +1,8 @@
 ﻿namespace Infrastructure.Ef.Mappings
 {
-    class UserLikedItemsMapping : IEntityTypeConfiguration<UserLikedItems>
+    class UserLikedItemsMapping : IEntityTypeConfiguration<UserLikedItem>
     {
-        public void Configure(EntityTypeBuilder<UserLikedItems> builder)
+        public void Configure(EntityTypeBuilder<UserLikedItem> builder)
         {
             builder.ToTable("UserLikedItems");
 
