@@ -15,3 +15,4 @@ global using SharedKernel.Models.Response.Items;
 global using SharedKernel.Models.Response.Identity;
 global using Microsoft.AspNetCore.Identity;
 global using SharedKernel.Models.Response.User;
+global using Domain.Specifications.User;

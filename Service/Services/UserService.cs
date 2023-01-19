@@ -13,8 +13,7 @@
 
         public async Task<Result<GetUserNameResponseModel>> GetUserName(string userId)
         {
-            var user = await _usersDbContext.EntitySet
-                 .FirstOrDefaultAsync(x => x.Id == userId);
+            var user = await _usersDbContext.GetUserByIdSpecification(userId);
             if (user == null) return "User not found";
 
             return new GetUserNameResponseModel

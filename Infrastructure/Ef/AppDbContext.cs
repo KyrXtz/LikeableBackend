@@ -9,7 +9,7 @@
         {
             _currentUserService = currentUserService;
         }
-        DbSet<Item> IAppDbContext<Item>.EntitySet { get; set; }
+        DbSet<Item>  IAppDbContext<Item>.EntitySet { get; set; }
         DbSet<User> IAppDbContext<User>.EntitySet { get; set; }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
