@@ -3,11 +3,11 @@
     public class AppDbContext : IdentityDbContext<User>,
         IAppDbContext<User>, IAppDbContext<Item>
     {
-        //private readonly IUserService _currentUser;
-        public AppDbContext(DbContextOptions<AppDbContext> options)//, IUserService currentUser)
+        private readonly ICurrentUserService _currentUserService;
+        public AppDbContext(DbContextOptions<AppDbContext> options, ICurrentUserService currentUserService)
             : base(options)
         {
-            //_currentUser = currentUser;
+            _currentUserService = currentUserService;
         }
         DbSet<Item> IAppDbContext<Item>.EntitySet { get; set; }
         DbSet<User> IAppDbContext<User>.EntitySet { get; set; }
@@ -30,15 +30,14 @@
                 .ToList()
                 .ForEach(entry =>
                 {
-                    //var userId = _currentUser.GetCurrentUserId().Result.Data.UserId; //TODO change to async ? 
-                    //var username = _currentUser.GetUserName(userId).Result.Data.UserName;
-                    var username = "empty";
+                    var userId = _currentUserService.GetCurrentUserId().Result.Data.UserId; //TODO change to async ? 
+
                     if (entry.Entity is IDeletableEntity deletableEntity)
                     {
                         if (entry.State == EntityState.Deleted)
                         {
                             deletableEntity.DeletedOn = DateTime.UtcNow;
-                            deletableEntity.DeletedBy = username;
+                            deletableEntity.DeletedBy = userId;
                             deletableEntity.isDeleted = true;
 
                             entry.State = EntityState.Modified;
@@ -58,12 +57,12 @@
                         if (entry.State == EntityState.Added)
                         {
                             entity.CreatedOn = DateTime.UtcNow;
-                            entity.CreatedBy = username;
+                            entity.CreatedBy = userId;
                         }
                         else if (entry.State == EntityState.Modified)
                         {
                             entity.ModifiedOn = DateTime.UtcNow;
-                            entity.ModifiedBy = username;
+                            entity.ModifiedBy = userId;
                         }
                     }
 
