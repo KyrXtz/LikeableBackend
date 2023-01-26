@@ -3,8 +3,10 @@
     public class User : BaseUser, IAggregateRoot
     {
         public Profile Profile { get; private set; }
+
         private List<UserLikedItem> likedItems;
         public IReadOnlyCollection<UserLikedItem> LikedItems => likedItems.AsReadOnly();
+
         private User() { likedItems = new List<UserLikedItem>(); }
         internal User(Profile profile, string username, string email)
         {
@@ -24,10 +26,7 @@
 
         public void UpdateProfile(string? name = null, string? mainPhotoUrl = null)
         {
-            if(name == null) name = Profile.Name;
-            if(mainPhotoUrl == null) mainPhotoUrl = Profile.MainPhotoUrl;
-
-            Profile = Profile.Create(name, mainPhotoUrl);
+            Profile = Profile.Create(name ?? Profile.Name, mainPhotoUrl ?? Profile.MainPhotoUrl);
         }
     }
 }

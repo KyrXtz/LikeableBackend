@@ -13,7 +13,7 @@
             builder.Property(x => x.Id)
                 .ValueGeneratedNever();
 
-            builder.OwnsOne(p => p.Description, p =>
+            builder.OwnsOne(p => p.Info, p =>
             {
                 p.Property(x => x.Description).HasColumnName("Description").HasMaxLength(3000);
             });
