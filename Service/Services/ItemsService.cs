@@ -39,13 +39,13 @@
             return item;
         }
 
-        public async Task<Result<UpdateItemResponseModel>> Update(Guid id, string description)
+        public async Task<Result<UpdateItemResponseModel>> Update(Guid id, string title, string description)
         {
             var item = await ByIdAndUserId(id);
 
             if (item == null) return "This user cannot edit this item.";
 
-            item.Update(description: description);
+            item.Update(title: title, description: description);
 
             await this._itemsDbContext.SaveChangesAsync();
 
