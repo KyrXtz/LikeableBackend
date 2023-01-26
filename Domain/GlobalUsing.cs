@@ -5,3 +5,4 @@ global using Domain.Base;
 global using Domain.ValueObjects;
 global using SharedKernel.Interfaces;
 global using Microsoft.EntityFrameworkCore;
+global using Domain.ValueObjects.User;

@@ -1,4 +1,4 @@
-﻿namespace Domain.ValueObjects
+﻿namespace Domain.ValueObjects.User
 {
     public class Profile : ValueObject
     {

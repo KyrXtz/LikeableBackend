@@ -30,7 +30,7 @@
                  {
                     Id = x.Id,
                     ImageUrl = x.ImageUrl ,
-                    Description = x.Description.Value 
+                    Description = x.Description.Description 
                  })
                 .FirstOrDefaultAsync();
 

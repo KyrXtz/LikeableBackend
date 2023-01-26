@@ -15,7 +15,7 @@
 
             builder.OwnsOne(p => p.Description, p =>
             {
-                p.Property(x => x.Value).HasColumnName("Description").HasMaxLength(3000);
+                p.Property(x => x.Description).HasColumnName("Description").HasMaxLength(3000);
             });
 
             builder.HasMany<UserLikedItem>()

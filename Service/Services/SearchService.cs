@@ -14,12 +14,12 @@
             var items = await _itemDbContext
                 .EntitySet
                 .Where(i => i.Title.ToLower().Contains(query.ToLower()) ||
-                    i.Description.Value.ToLower().Contains(query.ToLower()))
+                    i.Description.Description.ToLower().Contains(query.ToLower()))
                 .Select(i => new SearchItemsResponseModel.SearchItem
                 {
                     Title = i.Title,
                     ImageUrl = i.ImageUrl,
-                    Description = i.Description.Value,
+                    Description = i.Description.Description,
                     ItemId = i.Id
                 })
                 .ToListAsync();
