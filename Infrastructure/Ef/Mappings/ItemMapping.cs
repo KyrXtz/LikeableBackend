@@ -50,6 +50,11 @@
                 .WithOne()
                 .HasForeignKey(x => x.ItemId)
                 .OnDelete(DeleteBehavior.ClientNoAction);
+
+            builder.HasMany<UserFavoritedItem>()
+                .WithOne()
+                .HasForeignKey(x => x.ItemId)
+                .OnDelete(DeleteBehavior.ClientNoAction);
         }
     }
 }

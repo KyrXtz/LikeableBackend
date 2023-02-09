@@ -38,7 +38,7 @@
                 Items = likedItems.Select(x => new LikedItemsResponseModel.Item
                 {
                     Id = x.Id,
-                    ImageUrl = x.ImageUrl
+                    ImageUrl = x.Images.ImageList.FirstOrDefault()
                 })
             };
         }

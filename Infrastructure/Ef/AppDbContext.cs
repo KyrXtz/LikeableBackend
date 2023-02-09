@@ -1,7 +1,7 @@
 ﻿namespace Infrastructure.Ef
 {
     public class AppDbContext : IdentityDbContext<User>,
-        IAppDbContext<User>, IAppDbContext<Item>
+        IAppDbContext<User>, IAppDbContext<Item>, IAppDbContext<Order>, IAppDbContext<SelectedItem>
     {
         private readonly ICurrentUserService _currentUserService;
         public AppDbContext(DbContextOptions<AppDbContext> options, ICurrentUserService currentUserService)
@@ -9,8 +9,10 @@
         {
             _currentUserService = currentUserService;
         }
-        DbSet<Item>  IAppDbContext<Item>.EntitySet { get; set; }
+        DbSet<Item> IAppDbContext<Item>.EntitySet { get; set; }
         DbSet<User> IAppDbContext<User>.EntitySet { get; set; }
+        DbSet<Order> IAppDbContext<Order>.EntitySet { get; set; }
+        DbSet<SelectedItem> IAppDbContext<SelectedItem>.EntitySet { get; set; }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {

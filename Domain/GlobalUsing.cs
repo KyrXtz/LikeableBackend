@@ -6,3 +6,4 @@ global using Domain.ValueObjects;
 global using SharedKernel.Interfaces;
 global using Microsoft.EntityFrameworkCore;
 global using Domain.ValueObjects.User;
+global using Domain.ValueObjects.Item;

@@ -20,6 +20,16 @@
                 .WithOne()
                 .HasForeignKey(x => x.UserId)
                 .OnDelete(DeleteBehavior.ClientNoAction);
+
+            builder.HasMany(p => p.FavoritedItems)
+                .WithOne()
+                .HasForeignKey(x => x.UserId)
+                .OnDelete(DeleteBehavior.ClientNoAction);
+
+            builder.HasMany(p => p.UserOrders)
+                .WithOne()
+                .HasForeignKey(x => x.OrderId)
+                .OnDelete(DeleteBehavior.ClientNoAction);
         }
     }
 }

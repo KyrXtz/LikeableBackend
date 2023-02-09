@@ -10,7 +10,7 @@
 
         public async Task<Result<CreateItemResponseModel>> Create(string title, string imageUrl, string description)
         {
-            var item = Item.Create(title, imageUrl, description);
+            var item = Item.Create(title, description, new[] { imageUrl } ,null,null,TimeSpan.Zero,0,0,false); //TODO
             
             _itemsDbContext.EntitySet.Add(item);
 
@@ -29,7 +29,7 @@
                 .Select(x => new ItemDetailsResponseModel
                  {
                     Id = x.Id,
-                    ImageUrl = x.ImageUrl ,
+                    ImageUrl = x.Images.ImageList.FirstOrDefault() , //todo change
                     Description = x.Info.Description 
                  })
                 .FirstOrDefaultAsync();

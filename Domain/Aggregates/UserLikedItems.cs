@@ -15,7 +15,5 @@
         {
             return new UserLikedItem(itemId, userId);
         }
-
-
     }
 }

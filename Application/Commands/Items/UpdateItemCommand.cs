@@ -37,6 +37,7 @@
         {
             var res = await _itemsService.Update(
                 request.ItemId,
+                "", //todo
                 request.Description
                 );
             if (!res.Succeeded) return res.Error;

@@ -1,6 +1,4 @@
-﻿using Domain.ValueObjects.Item;
-
-namespace Domain.Aggregates
+﻿namespace Domain.Aggregates
 {
     public class Item : DeletableBaseEntity , IAggregateRoot
     {    
@@ -13,7 +11,7 @@ namespace Domain.Aggregates
         /// <summary>
         /// needed by ef core
         /// </summary>
-        private Item() { }
+        internal Item() { }
 
         public Item(Guid id, Info info, Comments comments, Images images, Sound sound, PrintDetails printDetails)
         {
