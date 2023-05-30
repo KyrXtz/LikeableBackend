@@ -8,7 +8,7 @@
     }
   },
   "profiles": {
-    "EShop": {
+    "Likeable": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
