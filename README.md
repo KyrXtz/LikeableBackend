@@ -1,4 +1,9 @@
 # LikeableBackend: A Backend Engine for the 3D Printing Community
+
+<p align="center">
+  <img src="https://github.com/KyrXtz/LikeableBackend/blob/main/print.png" width="200" />
+</p>
+
 Imagine a platform where 3D printing enthusiasts could share their creative endeavors, accrue likes, favorites, and even receive orders for their impressive prints. This is what Likeable sets out to offer. To bring this to life, the LikeableBackend was created using .NET 6, utilizing a well-structured Hexagonal/Onion architecture with microservices at its core.
 ## The Backbone of Good Engineering
 The LikeableBackend isn't merely about ensuring functionality. It represents an embodiment of principled engineering practices. Underlying the code, you'll find principles from Domain Driven Design, Clean Code, and CQRS, all neatly separated and arranged. The design further emphasizes the classic SOLID and DRY principles, contributing to a codebase that's robust and maintainable.
