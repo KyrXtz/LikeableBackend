@@ -29,7 +29,8 @@ Let's explore the key components:
 Let's delve a little deeper into the layers that make up the LikeableBackend:
 
 - Domain and Shared Kernel: This inner layer houses all the **business logic**, making it available through the shared kernel, while using the **specification pattern** , decoupling the actual object from the business rules it must obey.
-- Application and Service: The application layer processes **commands and queries**, formatting data for interaction with the database. The service layer handles **external calls** and provides other **functional services**, like the Current User Service.
+- Application: The application layer processes **commands and queries**, formatting data for interaction with the service layer.
+- Service: The service layer handles **external calls** and provides other **functional services**, like the Current User Service, and also handles the **CRUD** operations on the database.
 - Infrastructure: This layer takes care of **technical operations**, including **database** connection, setting up **Entity Framework Core mappings**, and applying **Filters** to the calls.
 - API: The outermost layer serves as the **external interface**, enabling the frontend to **post** and **query** data.
 
